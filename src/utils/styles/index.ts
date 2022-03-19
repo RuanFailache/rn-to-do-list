@@ -17,7 +17,7 @@ export const toDoListStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    height: (3 / 4) * dimensions.height,
+    height: dimensions.height - theme.sizes.lg,
     width: dimensions.width,
   },
   text: {
@@ -30,5 +30,40 @@ export const toDoListStyle = StyleSheet.create({
   task: {
     paddingVertical: theme.sizes.sm,
     paddingHorizontal: theme.sizes.md,
+  },
+})
+
+export const footerButtonStyle = StyleSheet.create({
+  button: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    bottom: theme.sizes.sm,
+    right: theme.sizes.sm,
+    width: theme.sizes.lg,
+    height: theme.sizes.lg,
+    borderRadius: 100,
+    backgroundColor: theme.colors.green,
+  },
+  buttonText: {
+    fontSize: theme.fontSizes.lg,
+    color: theme.colors.white,
+  },
+})
+
+export const headerStyle = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: dimensions.width,
+    height: theme.sizes.lg,
+    backgroundColor: theme.colors.black,
+    zIndex: 1,
+    shadowOpacity: 1,
+  },
+  title: {
+    fontSize: theme.fontSizes.md,
+    color: theme.colors.white,
   },
 })

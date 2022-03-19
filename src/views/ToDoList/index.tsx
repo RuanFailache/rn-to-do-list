@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { FlatList, KeyboardAvoidingView } from 'react-native'
+import { FooterButton } from '../../components'
 
-import { toDoListStyle } from '../../utils'
+import { appStyle, toDoListStyle } from '../../utils'
 import { Divider, EmptyToDoList, Task } from './components'
 
 type ToDoListProps = {
@@ -11,7 +12,7 @@ type ToDoListProps = {
 
 export const ToDoList: React.FC<ToDoListProps> = function ({ tasks }) {
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView style={appStyle.container}>
       <FlatList
         data={tasks}
         style={toDoListStyle.listContainer}
@@ -19,6 +20,8 @@ export const ToDoList: React.FC<ToDoListProps> = function ({ tasks }) {
         ListEmptyComponent={() => <EmptyToDoList />}
         renderItem={({ item }) => <Task task={item} />}
       />
+
+      <FooterButton />
     </KeyboardAvoidingView>
   )
 }
