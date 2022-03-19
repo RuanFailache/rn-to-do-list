@@ -26,33 +26,43 @@ type AddTaskModalProps = {
   closeModal: () => void
 }
 
+const INITIAL_TASK_STATE = {
+  name: '',
+  description: '',
+  done: false,
+}
+
 export const AddTaskModal: React.FC<AddTaskModalProps> = function ({
   visible,
   closeModal,
 }) {
   const { createNewTask } = useTaskContext()
-  const [task, setTask] = useState<Task>({
-    name: '',
-    description: '',
-    done: false,
-  })
+  const [task, setTask] = useState<Task>(INITIAL_TASK_STATE)
+  const [errorMessage, setErrorMessage] = useState<string | null>()
 
   const handleChangeText = useCallback((key: keyof Task, text: string) => {
-    setTask((prev: Task) => ({ ...prev, [key]: text }))
+    setTask((prevTask: Task) => ({ ...prevTask, [key]: text }))
   }, [])
+
+  const clearStatesAndCloseModal = useCallback(() => {
+    setTask(INITIAL_TASK_STATE)
+    setErrorMessage(null)
+    closeModal()
+  }, [closeModal])
 
   const onSubmitTask = () => {
     if (task.name.length < 3) {
+      setErrorMessage('Ops! O nome da tarefa deve ter 3 digitos.')
       return
     }
 
     createNewTask(task)
-    closeModal()
+    clearStatesAndCloseModal()
   }
 
   return (
     <Modal animationType="slide" visible={visible} transparent>
-      <TouchableWithoutFeedback onPress={closeModal}>
+      <TouchableWithoutFeedback onPress={clearStatesAndCloseModal}>
         <View style={addTaskModalStyle.overlay} />
       </TouchableWithoutFeedback>
 
@@ -64,8 +74,10 @@ export const AddTaskModal: React.FC<AddTaskModalProps> = function ({
             style={addTaskModalStyle.input}
             value={task.name}
             onChangeText={text => handleChangeText('name', text)}
-            placeholder="Escreva um nome para sua tarefa!"
-            placeholderTextColor={theme.colors.gray}
+            placeholder={errorMessage || 'Escreva um nome para sua tarefa!'}
+            placeholderTextColor={
+              errorMessage ? theme.colors.red : theme.colors.gray
+            }
           />
 
           <TextInput
