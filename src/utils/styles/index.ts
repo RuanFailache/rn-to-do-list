@@ -9,6 +9,15 @@ export const appStyle = StyleSheet.create({
   },
 })
 
+const radioButton = {
+  width: 20,
+  height: 20,
+  padding: theme.sizes.xxxs,
+  borderColor: theme.colors.gray,
+  borderWidth: theme.sizes.xxxs,
+  borderRadius: 100,
+}
+
 export const toDoListStyle = StyleSheet.create({
   listContainer: {
     marginTop: theme.sizes.lg,
@@ -20,7 +29,12 @@ export const toDoListStyle = StyleSheet.create({
     height: dimensions.height - theme.sizes.lg,
     width: dimensions.width,
   },
-  text: {
+  title: {
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 'bold',
+    color: theme.colors.black,
+  },
+  description: {
     fontSize: theme.fontSizes.sm,
   },
   divider: {
@@ -28,8 +42,23 @@ export const toDoListStyle = StyleSheet.create({
     borderBottomWidth: 1,
   },
   task: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: theme.sizes.sm,
     paddingHorizontal: theme.sizes.md,
+  },
+  taskButtonNotDone: {
+    ...radioButton,
+    marginRight: theme.sizes.sm,
+  },
+  taskButtonDone: {
+    ...radioButton,
+    marginRight: theme.sizes.sm,
+    backgroundColor: theme.colors.green,
+  },
+  textDone: {
+    color: theme.colors.green,
+    textDecorationLine: 'line-through',
   },
 })
 

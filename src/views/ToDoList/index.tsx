@@ -22,8 +22,7 @@ export const ToDoList: React.FC = function () {
         style={toDoListStyle.listContainer}
         ItemSeparatorComponent={() => <Divider />}
         ListEmptyComponent={() => <EmptyToDoList />}
-        renderItem={({ item }) => <Task task={item.name} />}
-        keyExtractor={item => item.name}
+        renderItem={({ item }) => <Task task={item} />}
       />
 
       <AddTaskModal closeModal={closeModal} visible={isModalOpen} />
