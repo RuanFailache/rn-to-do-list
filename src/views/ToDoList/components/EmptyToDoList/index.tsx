@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { toDoListStyle } from '../../../../utils'
+import { toDoListStyle } from '../../../../utils/styles'
 
 export const EmptyToDoList: React.FC = function () {
   return (

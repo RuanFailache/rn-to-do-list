@@ -47,7 +47,6 @@ export const footerButtonStyle = StyleSheet.create({
   },
   buttonText: {
     fontSize: theme.fontSizes.lg,
-    color: theme.colors.white,
   },
 })
 
@@ -65,5 +64,61 @@ export const headerStyle = StyleSheet.create({
   title: {
     fontSize: theme.fontSizes.md,
     color: theme.colors.white,
+  },
+})
+
+const shadowForModals = {
+  shadowColor: theme.colors.black,
+  shadowOffset: {
+    width: theme.sizes.xs,
+    height: theme.sizes.xs,
+  },
+  shadowOpacity: 1,
+  shadowRadius: 40,
+}
+
+export const addTaskModalStyle = StyleSheet.create({
+  overlay: {
+    flex: 1,
+  },
+  modal: {
+    ...shadowForModals,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: dimensions.width,
+    padding: theme.sizes.md,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    backgroundColor: theme.colors.black,
+  },
+  title: {
+    fontSize: theme.fontSizes.md,
+    color: theme.colors.white,
+  },
+  form: {
+    marginTop: theme.sizes.md,
+  },
+  input: {
+    marginBottom: theme.sizes.sm,
+    paddingHorizontal: theme.sizes.sm,
+    borderColor: theme.colors.white,
+    borderWidth: theme.sizes.xxxs,
+    borderRadius: 10,
+    fontSize: theme.fontSizes.sm,
+    color: theme.colors.white,
+  },
+  button: {
+    height: theme.sizes.lg,
+    width: 120,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    borderRadius: 10,
+    backgroundColor: theme.colors.green,
+  },
+  buttonText: {
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 'bold',
   },
 })

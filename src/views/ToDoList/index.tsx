@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { FlatList, KeyboardAvoidingView } from 'react-native'
+
+import { appStyle, toDoListStyle } from '../../utils/styles'
+import { AddTaskModal, Divider, EmptyToDoList, Task } from './components'
 import { FooterButton } from '../../components'
+import { useTaskContext } from '../../contexts/task'
 
-import { appStyle, toDoListStyle } from '../../utils'
-import { Divider, EmptyToDoList, Task } from './components'
+export const ToDoList: React.FC = function () {
+  const { tasks } = useTaskContext()
+  const [isModalOpen, setIsModalOpen] = useState(true)
 
-type ToDoListProps = {
-  tasks: string[]
-}
+  const openModal = () => setIsModalOpen(true)
 
-export const ToDoList: React.FC<ToDoListProps> = function ({ tasks }) {
+  const closeModal = () => setIsModalOpen(false)
+
   return (
     <KeyboardAvoidingView style={appStyle.container}>
       <FlatList
@@ -18,10 +22,13 @@ export const ToDoList: React.FC<ToDoListProps> = function ({ tasks }) {
         style={toDoListStyle.listContainer}
         ItemSeparatorComponent={() => <Divider />}
         ListEmptyComponent={() => <EmptyToDoList />}
-        renderItem={({ item }) => <Task task={item} />}
+        renderItem={({ item }) => <Task task={item.name} />}
+        keyExtractor={item => item.name}
       />
 
-      <FooterButton />
+      <AddTaskModal closeModal={closeModal} visible={isModalOpen} />
+
+      <FooterButton openModal={openModal} />
     </KeyboardAvoidingView>
   )
 }

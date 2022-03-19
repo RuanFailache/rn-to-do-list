@@ -3,7 +3,7 @@ export const theme = {
     black: '#1d1d1d',
     gray: '#bdbdbd',
     green: '#596',
-    white: '#fff',
+    white: '#f4f4f4',
   },
   sizes: {
     xxxs: 2,
